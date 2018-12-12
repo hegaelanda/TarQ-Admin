@@ -1,12 +1,12 @@
 <?php
 include 'header.php'; 
-include '../database/database_guru.php';
+include '../database/database_jamaah.php';
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Data Guru</h1>
+                    <h1 class="page-header">Request Pengajaran</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -15,7 +15,7 @@ include '../database/database_guru.php';
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            List Guru
+                            List Request
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -23,9 +23,10 @@ include '../database/database_guru.php';
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>ID Guru</th>
-                                        <th>Nama</th>
-                                        <th>No HP</th>
+                                        <th>Jamaah</th>
+                                        <th>Guru</th>
+                                        <th>ID Pengajaran</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,15 +34,17 @@ include '../database/database_guru.php';
                                       foreach ($value as $key => $val) {
                                         $user = $auth->getUser($key);
                                         if (isset($val['id_user'])) {
-                                          # code...
+                                          if (isset($val['request'])&&$val['request']=='true') {
                                           ?>
                                               <tr>
                                                   <td><?php echo $no++; ?></td>
                                                   <td><?php echo $val['id_user']; ?></td>
                                                   <td><?php echo $val['nama']; ?></td>
                                                   <td><?php echo $val['nohp']; ?></td>
+                                                  <td><a href="" class="btn btn-primary"><i class="fa fa-arrow-right"></i></a></td>
                                               </tr>
                                     <?php 
+                                          }
                                         }
                                       }
                                     ?>
