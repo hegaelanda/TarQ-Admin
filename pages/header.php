@@ -76,7 +76,15 @@
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="v_jadwal.php"><i class="fa fa-calendar fa-fw"></i> Jadwal</a>
+                            <a href="#"><i class="fa fa-calendar fa-fw"></i> Jadwal<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="v_request_pengajaran.php"><i class="fa fa-caret-right fa-fw"></i>Request Pengajaran</a>
+                                </li>
+                                <li>
+                                    <a href="v_jadwal.php"><i class="fa fa-caret-right fa-fw"></i>Monitor Jadwal</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="v_pembayaran.php"><i class="fa fa-get-pocket fa-fw"></i> Pembayaran</a>
@@ -85,13 +93,10 @@
                             <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Guru<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="v_daftar_guru.php"><i class="fa fa-caret-right fa-fw"></i>Daftar Guru</a>
-                                </li>
-                                <li>
                                     <a href="v_guru.php"><i class="fa fa-caret-right fa-fw"></i>List Guru</a>
                                 </li>
                                 <li>
-                                    <a href="v_request_pengajaran.php"><i class="fa fa-caret-right fa-fw"></i>Request Pengajaran</a>
+                                    <a href="v_daftar_guru.php"><i class="fa fa-caret-right fa-fw"></i>Daftar Guru</a>
                                 </li>
                                 <li>
                                     <a href="v_antrian_guru.php"><i class="fa fa-caret-right fa-fw"></i>Antrian Guru</a>

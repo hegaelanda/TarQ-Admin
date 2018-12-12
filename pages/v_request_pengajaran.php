@@ -16,6 +16,7 @@ include '../database/database_jamaah.php';
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             List Request
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#detailModal" id="test">TEST</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -63,4 +64,50 @@ include '../database/database_jamaah.php';
 </div>
 <!-- /#page-wrapper -->
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Lengkapi Jadwal</h4>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <label for="hari1">Hari ke-1 :</label>
+          <select name="hari1" id="hari1" class="form-control">
+            <option value="Senin">Senin</option>
+            <option value="Selasa">Selasa</option>
+            <option value="Rabu">Rabu</option>
+            <option value="Kamis">Kamis</option>
+            <option value="Jum'at">Jum'at</option>
+            <option value="Sabtu">Sabtu</option>
+            <option value="Minggu">Minggu</option>
+          </select>
+          <br>
+          <label for="hari2">Hari ke-2 :</label>
+          <select name="hari2" id="hari2" class="form-control">
+            <option value="Senin">Senin</option>
+            <option value="Selasa">Selasa</option>
+            <option value="Rabu">Rabu</option>
+            <option value="Kamis">Kamis</option>
+            <option value="Jum'at">Jum'at</option>
+            <option value="Sabtu">Sabtu</option>
+            <option value="Minggu">Minggu</option>
+          </select>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" type="button" href="#" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" type="button" href="#" id="accept">Submit</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
 <?php include 'footer.php'; ?>

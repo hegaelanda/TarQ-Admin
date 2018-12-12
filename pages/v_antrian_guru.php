@@ -4,85 +4,83 @@ include '../database/database_guru.php';
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Antrian Guru</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            List Antrian Guru Menunggu Persetujuan
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>ID Guru</th>
-                                        <th>Nama</th>
-                                        <th>No HP</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 1; $i = 'tidak_ada';
-                                      foreach ($value as $key => $val) {
-                                        $user = $auth->getUser($key);
-                                        if (isset($val['id_user'])) {
-                                          if ($val['verifikasi'] == 'false') {
-                                          ?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></td>
-                                                <td><?php echo $val['id_user']; ?></td>
-                                                <td><?php echo $val['nama']; ?></td>
-                                                <td><?php echo $val['nohp']; ?></td>
-                                                <td align="center"><button class="btn btn-primary" data-toggle="modal" data-target="#detailModal" id="<?php echo $key?>" onclick="showDetails(this);"><i class="fa fa-arrow-right"></i></button></td>
-                                            </tr>
-                                    <?php 
-                                          }
-                                        }
-                                      }
-                                    ?>
-                              </tbody>
-                            </table>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Antrian Guru</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Antrian Guru Menunggu Persetujuan
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>ID Guru</th>
+                <th>Nama</th>
+                <th>No HP</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1; $i = 'tidak_ada';
+              foreach ($value as $key => $val) {
+                $user = $auth->getUser($key);
+                if (isset($val['id_user'])) {
+                  if ($val['verifikasi'] == 'false') {
+                    ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $val['id_user']; ?></td>
+                      <td><?php echo $val['nama']; ?></td>
+                      <td><?php echo $val['nohp']; ?></td>
+                      <td align="center"><button class="btn btn-primary" data-toggle="modal" data-target="#detailModal" id="<?php echo $key?>" onclick="showDetails(this);"><i class="fa fa-arrow-right"></i></button></td>
+                    </tr>
+                    <?php 
+                  }
+                }
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+</div>
+<!-- /#page-wrapper -->
 <!-- /.container-fluid -->
 </div>
 <!-- /#page-wrapper -->
 </div>
 
-<!-- Detail Modal-->
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Calon Guru</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Detail Calon Guru</h4>
       </div>
       <div class="modal-body">
-        <table class="table">
-          <tr>
+        <table class="table table-bordered table-striped">
+          <!-- <tr>
             <td colspan="2" class="text-center">
               <img src="" id="picture" width="90" height="90"></img>
             </td>
-          </tr>
+          </tr> -->
           <tr>
-            <td class="text-center"><b>UID</b></i></td>
+            <td class="text-center"><b>ID</b></i></td>
             <td><span id="id_user"></span></td>
           </tr>
           <tr>
@@ -105,13 +103,15 @@ include '../database/database_guru.php';
         </table>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         <button class="btn btn-danger" type="button" href="#" id="decline">Decline</button>
         <button class="btn btn-success" type="button" href="#" id="accept">Accept</button>
       </div>
     </div>
+    <!-- /.modal-content -->
   </div>
+  <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->
 
 <script type="text/javascript">
 
@@ -164,7 +164,7 @@ include '../database/database_guru.php';
     $("#accept").click(function() {
       /*alert('masokk pa eko!1');*/
       $.ajax({
-        url: "p_accept_penerima.php",
+        url: "../func/accept_guru.php",
         method: "GET",
         data: {"uid": uid},
         success:function(response){
@@ -176,7 +176,7 @@ include '../database/database_guru.php';
     $("#decline").click(function() {
       /*alert('masokk pa eko!1');*/
       $.ajax({
-        url: "p_decline_penerima.php",
+        url: "../func/decline_guru.php",
         method: "GET",
         data: {"uid": uid},
         success:function(response){
