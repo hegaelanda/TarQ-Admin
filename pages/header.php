@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,11 +17,14 @@
     <!-- MetisMenu CSS -->
     <link href="../assets/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="../assets/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../assets/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../assets/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -73,16 +76,25 @@
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="v_guru.php"><i class="fa fa-graduation-cap fa-fw"></i> Guru</a>
-                        </li>
-                        <li>
-                            <a href="forms.php"><i class="fa fa-university fa-fw"></i> Lembaga</a>
+                            <a href="forms.php"><i class="fa fa-calendar fa-fw"></i> Jadwal</a>
                         </li>
                         <li>
                             <a href="forms.php"><i class="fa fa-get-pocket fa-fw"></i> Pembayaran</a>
                         </li>
                         <li>
-                            <a href="forms.php"><i class="fa fa-calendar fa-fw"></i> Jadwal</a>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Guru<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="v_daftar_guru.php"><i class="fa fa-caret-right fa-fw"></i>Daftar Guru</a>
+                                </li>
+                                <li>
+                                    <a href="v_guru.php"><i class="fa fa-caret-right fa-fw"></i>List Guru</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="v_jamaah.php"><i class="fa fa-users fa-fw"></i> Jamaah</a>
                         </li>
                     </ul>
                 </div>
