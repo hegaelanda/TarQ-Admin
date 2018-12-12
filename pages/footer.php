@@ -14,6 +14,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../js/home.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

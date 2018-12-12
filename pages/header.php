@@ -93,6 +93,9 @@
                                 <li>
                                     <a href="v_request_pengajaran.php"><i class="fa fa-caret-right fa-fw"></i>Request Pengajaran</a>
                                 </li>
+                                <li>
+                                    <a href="v_antrian_guru.php"><i class="fa fa-caret-right fa-fw"></i>Antrian Guru</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

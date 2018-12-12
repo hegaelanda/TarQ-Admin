@@ -33,15 +33,16 @@ include '../database/database_guru.php';
                                       foreach ($value as $key => $val) {
                                         $user = $auth->getUser($key);
                                         if (isset($val['id_user'])) {
-                                          # code...
+                                          if ($val['verifikasi'] == 'true') {
                                           ?>
-                                              <tr>
-                                                  <td><?php echo $no++; ?></td>
-                                                  <td><?php echo $val['id_user']; ?></td>
-                                                  <td><?php echo $val['nama']; ?></td>
-                                                  <td><?php echo $val['nohp']; ?></td>
-                                              </tr>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><?php echo $val['id_user']; ?></td>
+                                                <td><?php echo $val['nama']; ?></td>
+                                                <td><?php echo $val['nohp']; ?></td>
+                                            </tr>
                                     <?php 
+                                          }
                                         }
                                       }
                                     ?>
