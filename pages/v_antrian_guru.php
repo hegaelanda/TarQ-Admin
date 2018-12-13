@@ -23,9 +23,9 @@ include '../database/database_guru.php';
             <thead>
               <tr>
                 <th>No</th>
-                <th>ID Guru</th>
                 <th>Nama</th>
                 <th>No HP</th>
+                <th>Created At</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -38,9 +38,14 @@ include '../database/database_guru.php';
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $val['id_user']; ?></td>
                       <td><?php echo $val['nama']; ?></td>
                       <td><?php echo $val['nohp']; ?></td>
+                      <td id="createdAt">
+                        <?php
+                        $createdAt = $user->metadata->createdAt;
+                        echo $createdAt->format('d / M / Y');
+                        ?>
+                      </td>
                       <td align="center"><button class="btn btn-primary" data-toggle="modal" data-target="#detailModal" id="<?php echo $key?>" onclick="showDetails(this);"><i class="fa fa-arrow-right"></i></button></td>
                     </tr>
                     <?php 
@@ -119,7 +124,7 @@ include '../database/database_guru.php';
     var uid = button.id;
     console.log(uid);
     $.ajax({
-      url: "../func/detail_antrian_guru.php",
+      url: "../func/f_detail_antrian_guru.php",
       method: "GET",
       data: {"uid": uid},
       success:function(response){
@@ -164,7 +169,7 @@ include '../database/database_guru.php';
     $("#accept").click(function() {
       /*alert('masokk pa eko!1');*/
       $.ajax({
-        url: "../func/accept_guru.php",
+        url: "../func/f_accept_guru.php",
         method: "GET",
         data: {"uid": uid},
         success:function(response){
@@ -176,7 +181,7 @@ include '../database/database_guru.php';
     $("#decline").click(function() {
       /*alert('masokk pa eko!1');*/
       $.ajax({
-        url: "../func/decline_guru.php",
+        url: "../func/f_decline_guru.php",
         method: "GET",
         data: {"uid": uid},
         success:function(response){

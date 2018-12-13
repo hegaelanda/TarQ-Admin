@@ -10,27 +10,83 @@ include '../database/database_guru.php';
         <h1 class="page-header">Daftar Guru <small>(Formulir)</small></h1>
         <div class="row">
           <div class="col-lg-12">
-            <form class="form-horizontal" method="POST" action="vdaftar_penerima.php">
+            <form class="form-horizontal" method="POST" action="../func/f_daftar_guru.php">
               <label for="email">Email :</label>
-              <input type="email" class="form-control" name="email" placeholder="Masukan Email Guru" required>
+              <input type="email" class="form-control" name="email" placeholder="Masukan Email Guru" required autofocus>
               <br>
               <label for="nohp">Nama Guru :</label>
               <input type="text" class="form-control" name="nama" placeholder="Masukan Nama Guru" required>
               <br>
               <label for="nohp">No Telepon :</label>
-              <input type="tel" class="form-control" name="nohp" placeholder="Masukan Nomor Telepon" maxlength="13" required>
+              <input type="text" class="form-control" name="nohp" placeholder="Masukan Nomor Telepon" maxlength="13" required>
               <br>
               <label for="tanggallahir">Tanggal Lahir :</label>
               <br>
-              <input type="date" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;" style="" name="tanggallahir" required>
-              <br><br>
+              <input type="date" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;" name="tanggallahir" format="dd/mm/yyyy" required>
+              <br>
+              <label for="alamat">Alamat</label>
+              <textarea class="form-control" name="alamat" placeholder="Masukan Alamat Guru"></textarea>
+              <br>
+              <label for="lembaga">Lembaga :</label>
+              <input type="text" class="form-control" name="lembaga" placeholder="Masukan Lembaga Guru" required>
+              <br>
+              <div class="">
+                <label>Keahlian Guru :</label>
+              </div>
+              <div class="col-sm-2" style="margin-left: -15px;">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="PraTahsin1" value="PraTahsin1">Pra Tahsin 1
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="PraTahsin2" value="PraTahsin2">Pra Tahsin 2
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="PraTahsin3" value="PraTahsin3">Pra Tahsin 3
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="Tahsin1" value="Tahsin1">Tahsin 1
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="Tahsin2" value="Tahsin2">Tahsin 2
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="Tahsin3" value="Tahsin3">Tahsin 3
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="Tahfizh" value="">Tahfizh
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="BahasaArab" value="BahasaArab">Bahasa Arab
+                  </label>
+                </div>
+              </div>
+              <br><br><br><br><br><br>
               <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
               <button type="reset" class="btn btn-danger"><i class="fa fa-repeat"></i> Reset</button>
             </form>
             <hr>
             <h1 class="page-header">Daftar Guru <small>(Import CSV)</small></h1>
-            <form method="POST" and enctype="multipart/form-data"  action="importCsv.php">
-              <label for="nohp">File CSV :</label>
+            <form method="POST" enctype="multipart/form-data" action="../func/f_importCsv.php">
+              <label for="fileInput">File CSV :</label>
               <input type="file" id="fileInput" accept=".csv" name="csv">
               <br>
               <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>

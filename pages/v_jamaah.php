@@ -20,9 +20,10 @@ include '../database/database_jamaah.php';
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>ID Jamaah</th>
                                             <th>Nama</th>
                                             <th>No HP</th>
+                                            <th>Created At</th>
+                                            <th>Last Login At</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,12 +32,27 @@ include '../database/database_jamaah.php';
                                             if (isset($val['nama'])) {
                                             $user = $auth->getUser($key);
                                               ?>
-                                                  <tr>
-                                                      <td><?php echo $no++; ?></td>
-                                                      <td><?php echo $val['id_user']; ?></td>
-                                                      <td><?php echo $val['nama']; ?></td>
-                                                      <td><?php echo $val['nohp']; ?></td>
-                                                  </tr>
+                                              <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><?php echo $val['nama']; ?></td>
+                                                <td><?php echo $val['nohp']; ?></td>
+                                                <td id="createdAt">
+                                                  <?php
+                                                  $createdAt = $user->metadata->createdAt;
+                                                  echo $createdAt->format('d / M / Y');
+                                                  ?>
+                                                </td>
+                                                <td>
+                                                    <?php 
+                                                    $lastLoginAt = $user->metadata->lastLoginAt;
+                                                    if ($lastLoginAt != NULL){
+                                                        echo $lastLoginAt->format('d / M / Y');
+                                                    }else{
+                                                        echo "Belum Login";
+                                                    }
+                                                     ?>
+                                                </td>
+                                            </tr>
                                         <?php 
                                             }
                                           }
