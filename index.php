@@ -11,3 +11,4 @@
 Go to <a href="pages/index.php">/pages/index.php</a>
 </body>
 </html>
+<!-- Suka Blyat -->
