@@ -48,40 +48,40 @@ if (isset($_FILES['csv']['name'])) {
 
 	for ($i=0; $i < count($data) ; $i++) { 
 		$userProperties = [
-		  'email' => $data[$i]['email'],
+		  'email'         => $data[$i]['email'],
 		  'emailVerified' => false,
-		  'password' => '12341234',
-		  'displayName' => $data[$i]['nama'],
-		  'disabled' => false
+		  'password'      => '12341234',
+		  'displayName'   => $data[$i]['nama'],
+		  'disabled'      => false
 		  ];
 
 		$createdUser = $auth->createUser($userProperties);
 
-		$key = $auth->getUserByEmail($data[$i]['email']);
+		$key 		 = $auth->getUserByEmail($data[$i]['email']);
 	  
-		$uid = $key->uid;
-		$refrerence = "TARQ/USER/GURU/".$uid;
-		$newpost = $database
+		$uid		 = $key->uid;
+		$refrerence  = "TARQ/USER/GURU/".$uid;
+		$newpost 	 = $database
 	    	->getReference($refrerence)
 		    ->set([
-		        'id_user'=>$uid,
-		        'nama'=>strtoupper($data[$i]['nama']),
-		        'nohp'=>$data[$i]['nohp'],
-		        'tanggallahir'=>$data[$i]['tanggallahir'],
-		        'alamat'=>strtoupper($data[$i]['alamat']),
-		        'pratahsin1'=>strtolower($data[$i]['pratahsin1']),
-		        'pratahsin2'=>strtolower($data[$i]['pratahsin2']),
-		        'pratahsin3'=>strtolower($data[$i]['pratahsin3']),
-		        'lembaga'=>$data[$i]['lembaga'],
-		        'tahsin1'=>strtolower($data[$i]['tahsin1']),
-		        'tahsin2'=>strtolower($data[$i]['tahsin2']),
-		        'tahsin3'=>strtolower($data[$i]['tahsin3']),
-		        'tahfizh'=>strtolower($data[$i]['tahfizh']),
-		        'bahasaarab'=>strtolower($data[$i]['bahasaarab']),
-		        'latitude'=>'0',
-		        'longitude'=>'0',
-		        'level'=>3,
-		        'verifikasi'=>"true"
+		        'id_user'		=>$uid,
+		        'nama'			=>strtoupper($data[$i]['nama']),
+		        'nohp'			=>$data[$i]['nohp'],
+		        'tanggallahir'	=>$data[$i]['tanggallahir'],
+		        'alamat'		=>strtoupper($data[$i]['alamat']),
+		        'pratahsin1'	=>strtolower($data[$i]['pratahsin1']),
+		        'pratahsin2'	=>strtolower($data[$i]['pratahsin2']),
+		        'pratahsin3'	=>strtolower($data[$i]['pratahsin3']),
+		        'lembaga'   	=>$data[$i]['lembaga'],
+		        'tahsin1'		=>strtolower($data[$i]['tahsin1']),
+		        'tahsin2'		=>strtolower($data[$i]['tahsin2']),
+		        'tahsin3'		=>strtolower($data[$i]['tahsin3']),
+		        'tahfizh'		=>strtolower($data[$i]['tahfizh']),
+		        'bahasaarab'	=>strtolower($data[$i]['bahasaarab']),
+		        'latitude'		=>'0.0',
+		        'longitude'		=>'0.0',
+		        'level'			=>3,
+		        'verifikasi'	=>"true"
 		    ]);
 	}
 	header('Location: ../pages/v_guru.php');
