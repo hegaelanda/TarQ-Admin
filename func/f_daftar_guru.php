@@ -18,17 +18,17 @@ $auth = $firebase->getAuth();
 
 if (isset($_POST['email'])) {
   
-  $email = $_POST['email'];
-  $nama = $_POST['nama'];
-  $nohp = $_POST['nohp'];
+  $email   = $_POST['email'];
+  $nama    = $_POST['nama'];
+  $nohp    = $_POST['nohp'];
   $lembaga = $_POST['lembaga'];
   if ($lembaga == "other") {
-    $lembaga = strtoupper($_POST['lembagabaru']);
-    $ambil = $database->getReference('TARQ/Lembaga/lembaga');
-    $snap = $ambil->getSnapshot();
-    $vlembaga = $snap->getValue();
+    $lembaga   = strtoupper($_POST['lembagabaru']);
+    $ambil     = $database->getReference('TARQ/Lembaga/lembaga');
+    $snap      = $ambil->getSnapshot();
+    $vlembaga  = $snap->getValue();
 
-    $ambilbaru = 'TARQ/Lembaga';
+    $ambilbaru   = 'TARQ/Lembaga';
     $lembagapost = $database
     ->getReference($ambilbaru)
     ->set([
@@ -80,11 +80,11 @@ if (isset($_POST['email'])) {
   }
 
   $userProperties = [
-      'email' => $email,
+      'email'         => $email,
       'emailVerified' => false,
-      'password' => '12341234',
-      'displayName' => $nama,
-      'disabled' => false
+      'password'      => '12341234',
+      'displayName'   => $nama,
+      'disabled'      => false
   ];
 
   $createdUser = $auth->createUser($userProperties);
@@ -97,24 +97,24 @@ if (isset($_POST['email'])) {
   $newpost = $database
     ->getReference($refrerence)
     ->set([
-        'id_user'=>$uid,
-        'nama'=>strtoupper($nama),
-        'nohp'=>$nohp,
-        'tanggallahir'=>$newDate,
-        'alamat'=>strtoupper($alamat),
-        'lembaga'=>strtoupper($lembaga),
-        'pratahsin1'=>$PraTahsin1,
-        'pratahsin2'=>$PraTahsin2,
-        'pratahsin3'=>$PraTahsin3,
-        'tahsin1'=>$Tahsin1,
-        'tahsin2'=>$Tahsin2,
-        'tahsin3'=>$Tahsin3,
-        'tahfizh'=>$Tahfizh,
-        'bahasaarab'=>$BahasaArab,
-        'latitude'=>'0',
-        'longitude'=>'0',
-        'level'=>3,
-        'verifikasi'=>"true"
+        'id_user'       =>$uid,
+        'nama'          =>strtoupper($nama),
+        'nohp'          =>$nohp,
+        'tanggallahir'  =>$newDate,
+        'alamat'        =>strtoupper($alamat),
+        'lembaga'       =>strtoupper($lembaga),
+        'pratahsin1'    =>$PraTahsin1,
+        'pratahsin2'    =>$PraTahsin2,
+        'pratahsin3'    =>$PraTahsin3,
+        'tahsin1'       =>$Tahsin1,
+        'tahsin2'       =>$Tahsin2,
+        'tahsin3'       =>$Tahsin3,
+        'tahfizh'       =>$Tahfizh,
+        'bahasaarab'    =>$BahasaArab,
+        'latitude'      =>'0',
+        'longitude'     =>'0',
+        'level'         =>3,
+        'verifikasi'    =>"true"
     ]);
 
   if ($newpost) {
