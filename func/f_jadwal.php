@@ -1,5 +1,4 @@
 <?php
-include '../database/database_lembaga.php';
 require '../vendor/autoload.php';
 
 use Kreait\Firebase\Factory;
@@ -14,71 +13,9 @@ $firebase = (new Factory)
 
 $database = $firebase->getDatabase();
 
-$auth = $firebase->getAuth();
-
 if (isset($_POST['email'])) {
-  
-  $email = $_POST['email'];
-  $nama = $_POST['nama'];
-  $nohp = $_POST['nohp'];
-  if (isset($_POST['lembagabaru'])) {
-    $lembaga = strtoupper($_POST['lembagabaru']);
-    $ambil = $database->getReference('TARQ/Lembaga/lembaga');
-    $snap = $ambil->getSnapshot();
-    $vlembaga = $snap->getValue();
 
-    $ambilbaru = 'TARQ/Lembaga';
-    $lembagapost = $database
-    ->getReference($ambilbaru)
-    ->set([
-        'lembaga'=>$vlembaga.','.$lembaga
-    ]);
-  }else{
-    $lembaga = $_POST['lembaga'];
-  }
-  $tanggallahir = $_POST['tanggallahir'];
-  $newDate = date("d-m-Y", strtotime($tanggallahir));
-  $alamat = $_POST['alamat'];
-  if (isset($_POST['PraTahsin1'])) {
-    $PraTahsin1 = "true";
-  }else{
-    $PraTahsin1 = "false";
-  }
-  if (isset($_POST['PraTahsin2'])) {
-    $PraTahsin2 = "true";
-  }else{
-    $PraTahsin2 = "false";
-  }
-  if (isset($_POST['PraTahsin3'])) {
-    $PraTahsin3 = "true";
-  }else{
-    $PraTahsin3 = "false";
-  }
-  if (isset($_POST['Tahsin1'])) {
-    $Tahsin1 = "true";
-  }else{
-    $Tahsin1 = "false";
-  }
-  if (isset($_POST['Tahsin2'])) {
-    $Tahsin2 = "true";
-  }else{
-    $Tahsin2 = "false";
-  }
-  if (isset($_POST['Tahsin3'])) {
-    $Tahsin3 = "true";
-  }else{
-    $Tahsin3 = "false";
-  }
-  if (isset($_POST['Tahfizh'])) {
-    $Tahfizh = "true";
-  }else{
-    $Tahfizh = "false";
-  }
-  if (isset($_POST['BahasaArab'])) {
-    $BahasaArab = "true";
-  }else{
-    $BahasaArab = "false";
-  }
+  
 
   $userProperties = [
       'email' => $email,
@@ -91,8 +28,7 @@ if (isset($_POST['email'])) {
   $createdUser = $auth->createUser($userProperties);
 
   $key = $auth->getUserByEmail($email);
-
-  //set guru baru
+  
   $uid = $key->uid;
   $refrerence = "TARQ/USER/GURU/".$uid;
   $newpost = $database
@@ -103,7 +39,6 @@ if (isset($_POST['email'])) {
         'nohp'=>$nohp,
         'tanggallahir'=>$newDate,
         'alamat'=>strtoupper($alamat),
-        'lembaga'=>strtoupper($lembaga),
         'pratahsin1'=>$PraTahsin1,
         'pratahsin2'=>$PraTahsin2,
         'pratahsin3'=>$PraTahsin3,
@@ -117,7 +52,6 @@ if (isset($_POST['email'])) {
         'level'=>3,
         'verifikasi'=>"true"
     ]);
-
   if ($newpost) {
     echo '<script type="text/javascript">';
     echo "alert('User ID : $uid Email :$email Password : 12341234');";

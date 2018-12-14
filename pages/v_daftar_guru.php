@@ -1,6 +1,7 @@
 <?php
 include 'header.php'; 
 include '../database/database_guru.php';
+include '../database/database_lembaga.php';
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
@@ -22,13 +23,26 @@ include '../database/database_guru.php';
               <br>
               <label for="tanggallahir">Tanggal Lahir :</label>
               <br>
-              <input type="date" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;" name="tanggallahir" format="dd/mm/yyyy" required>
+              <input type="date" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;" name="tanggallahir" required>
               <br>
               <label for="alamat">Alamat</label>
               <textarea class="form-control" name="alamat" placeholder="Masukan Alamat Guru"></textarea>
               <br>
               <label for="lembaga">Lembaga :</label>
-              <input type="text" class="form-control" name="lembaga" placeholder="Masukan Lembaga Guru" required>
+              <select name="" id="lembaga" class="form-control" onchange="otherCheck(this);">
+              <?php 
+              for ($i=0; $i < count($lembagaArr); $i++) {
+              ?>
+                <option value="<?php echo $lembagaArr[$i] ?>"><?php echo $lembagaArr[$i]; ?></option> 
+              <?php
+              }
+              ?>
+                <option value="other" id="other">Lainnya</option>
+              </select>
+              <div id="ifOther" style="display: none;">
+                <br>
+                <input type="text" class="form-control" name="lembagabaru" placeholder="Masukan Lembaga Baru">
+              </div>
               <br>
               <div class="">
                 <label>Keahlian Guru :</label>
@@ -103,4 +117,13 @@ include '../database/database_guru.php';
 </div>
 <!-- /#page-wrapper -->
 </div>
+<script>
+  function otherCheck(that) {
+        if (that.value == "other") {
+            document.getElementById("ifOther").style.display = "block";
+        } else {
+            document.getElementById("ifOther").style.display = "none";
+        }
+    }
+</script>
 <?php include 'footer.php'; ?>

@@ -86,24 +86,57 @@ include '../database/database_guru.php';
           </tr> -->
           <tr>
             <td class="text-center"><b>ID</b></i></td>
-            <td><span id="id_user"></span></td>
+            <td colspan="2"><span id="id_user"></span></td>
           </tr>
           <tr>
             <td class="text-center"><i class="fa fa-user"></i></td>
-            <td><span id="name"></span></td>
+            <td colspan="2"><span id="name"></span></td>
           </tr>
           <tr>
             <td class="text-center"><i class="fa fa-phone"></i></td>
-            <td><span id="nohp"></span></td>
+            <td colspan="2"><span id="nohp"></span></td>
           </tr>
           <tr>
             <td class="text-center"><i class="fa fa-map-marker"></i></td>
-            <td><span id="alamat"></span>
+            <td colspan="2"><span id="alamat"></span>
             </td>
-          </tr>      
+          </tr>
           <tr>
             <td class="text-center"><b><i class="fa fa-calendar"></i></b></td>
-            <td><span id="tanggallahir"></span></td>
+            <td colspan="2"><span id="tanggallahir"></span></td>
+          </tr>
+          <tr>
+            <td align="center" colspan="3"><b>ABILITY</b></td>
+          </tr>
+          <tr>
+            <td align="center">Pra Tahsin 1</td>
+            <td align="center">Pra Tahsin 2</td>
+            <td align="center">Pra Tahsin 3</td>
+          </tr>
+          <tr>
+            <td align="center"><i id="pratahsin1" class="fa"></i></td>
+            <td align="center"><i id="pratahsin2" class="fa"></i></td>
+            <td align="center"><i id="pratahsin3" class="fa"></i></td>
+          </tr>
+          <tr>
+            <td align="center">Tahsin 1</td>
+            <td align="center">Tahsin 2</td>
+            <td align="center">Tahsin 3</td>
+          </tr>
+          <tr>
+            <td align="center"><i id="tahsin1" class="fa"></i></td>
+            <td align="center"><i id="tahsin2" class="fa"></i></td>
+            <td align="center"><i id="tahsin3" class="fa"></i></td>
+          </tr>
+          <tr>
+            <td align="center">Tahfizh</td>
+            <td align="center">Bahasa Arab</td>
+            <td align="center"></td>
+          </tr>
+          <tr>
+            <td align="center"><i id="tahfizh" class="fa"></i></td>
+            <td align="center"><i id="bahasaarab" class="fa"></i></td>
+            <td align="center"><i></i></td>
           </tr>
         </table>
       </div>
@@ -136,15 +169,74 @@ include '../database/database_guru.php';
         $("#nohp").text(data.nohp);
         $("#alamat").text(data.alamat);
 
+        var pratahsin1 = data.pratahsin1;
+        var pr1 = document.getElementById("pratahsin1");
+        if (pratahsin1 == "true") {
+          pr1.classList.add("fa-check");
+        }else{
+          pr1.classList.add("fa-times");
+        }
+        var pratahsin2 = data.pratahsin2;
+        var pr2 = document.getElementById("pratahsin2");
+        if (pratahsin2 == "true") {
+          pr2.classList.add("fa-check");
+        }else{
+          pr2.classList.add("fa-times");
+        }
+        var pratahsin3 = data.pratahsin3;
+        var pr3 = document.getElementById("pratahsin3");
+        if (pratahsin3 == "true") {
+          pr3.classList.add("fa-check");
+        }else{
+          pr3.classList.add("fa-times");
+        }
+
+        var tahsin1 = data.tahsin1;
+        var t1 = document.getElementById("tahsin1");
+        if (tahsin1 == "true") {
+          t1.classList.add("fa-check");
+        }else{
+          t1.classList.add("fa-times");
+        }
+        var tahsin2 = data.tahsin2;
+        var t2 = document.getElementById("tahsin2");
+        if (tahsin2 == "true") {
+          t2.classList.add("fa-check");
+        }else{
+          t2.classList.add("fa-times");
+        }
+        var tahsin3 = data.tahsin3;
+        var t3 = document.getElementById("tahsin3");
+        if (tahsin3 == "true") {
+          t3.classList.add("fa-check");
+        }else{
+          t3.classList.add("fa-times");
+        }
+
+        var tahfizh = data.tahfizh;
+        var t = document.getElementById("tahfizh");
+        if (tahfizh == "true") {
+          t.classList.add("fa-check");
+        }else{
+          t.classList.add("fa-times");
+        }
+        var bahasaarab = data.bahasaarab;
+        var b = document.getElementById("bahasaarab");
+        if (bahasaarab == "true") {
+          b.classList.add("fa-check");
+        }else{
+          b.classList.add("fa-times");
+        }
+
         var thelat = parseFloat(data.latitude);
         var thelong = parseFloat(data.longitude);
 
         console.log(thelat,thelong)
 
-        // var dimana = {lat : thelat, lng : thelong};
+        var dimana = {lat : thelat, lng : thelong};
 
-        // var peta = new google.maps.Map(document.getElementById('map'), {zoom: 16, center: dimana});
-        // var marker = new google.maps.Marker({position:dimana, map: peta});
+        var peta = new google.maps.Map(document.getElementById('map'), {zoom: 16, center: dimana});
+        var marker = new google.maps.Marker({position:dimana, map: peta});
 
         var storage = firebase.app().storage("gs://lkptarq93.appspot.com/");
 

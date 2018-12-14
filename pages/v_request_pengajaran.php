@@ -74,28 +74,13 @@ include '../database/database_jamaah.php';
         <h4 class="modal-title" id="myModalLabel">Lengkapi Jadwal</h4>
       </div>
       <div class="modal-body">
-        <form action="">
-          <label for="hari1">Hari ke-1 :</label>
-          <select name="hari1" id="hari1" class="form-control">
-            <option value="Senin">Senin</option>
-            <option value="Selasa">Selasa</option>
-            <option value="Rabu">Rabu</option>
-            <option value="Kamis">Kamis</option>
-            <option value="Jum'at">Jum'at</option>
-            <option value="Sabtu">Sabtu</option>
-            <option value="Minggu">Minggu</option>
-          </select>
+        <form action="../func/f_jadwal.php" method="POST">
+          <label for="hari1">Pertemuan ke-1 :</label>
+          <input type="date" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;" name="hari1" required>
           <br>
-          <label for="hari2">Hari ke-2 :</label>
-          <select name="hari2" id="hari2" class="form-control">
-            <option value="Senin">Senin</option>
-            <option value="Selasa">Selasa</option>
-            <option value="Rabu">Rabu</option>
-            <option value="Kamis">Kamis</option>
-            <option value="Jum'at">Jum'at</option>
-            <option value="Sabtu">Sabtu</option>
-            <option value="Minggu">Minggu</option>
-          </select>
+          <label for="hari2">Pertemuan ke-2 :</label>
+          <input type="date" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;" name="hari2" required>
+          <br>
         </form>
       </div>
       <div class="modal-footer">
