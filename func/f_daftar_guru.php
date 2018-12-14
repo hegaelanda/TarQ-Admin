@@ -21,7 +21,8 @@ if (isset($_POST['email'])) {
   $email = $_POST['email'];
   $nama = $_POST['nama'];
   $nohp = $_POST['nohp'];
-  if (isset($_POST['lembagabaru'])) {
+  $lembaga = $_POST['lembaga'];
+  if ($lembaga == "other") {
     $lembaga = strtoupper($_POST['lembagabaru']);
     $ambil = $database->getReference('TARQ/Lembaga/lembaga');
     $snap = $ambil->getSnapshot();
@@ -33,8 +34,6 @@ if (isset($_POST['email'])) {
     ->set([
         'lembaga'=>$vlembaga.','.$lembaga
     ]);
-  }else{
-    $lembaga = $_POST['lembaga'];
   }
   $tanggallahir = $_POST['tanggallahir'];
   $newDate = date("d-m-Y", strtotime($tanggallahir));
