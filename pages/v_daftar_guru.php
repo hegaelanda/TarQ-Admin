@@ -29,7 +29,7 @@ include '../database/database_lembaga.php';
               <textarea class="form-control" name="alamat" placeholder="Masukan Alamat Guru"></textarea>
               <br>
               <label for="lembaga">Lembaga :</label>
-              <select name="" id="lembaga" class="form-control" onchange="otherCheck(this);">
+              <select name="lembaga" id="lembaga" class="form-control" onchange="otherCheck(this);">
               <?php 
               for ($i=0; $i < count($lembagaArr); $i++) {
               ?>

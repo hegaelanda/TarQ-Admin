@@ -102,7 +102,7 @@ if (isset($_POST['email'])) {
         'nohp'=>$nohp,
         'tanggallahir'=>$newDate,
         'alamat'=>strtoupper($alamat),
-        'lembaga'=>strtoupper($lembaga),
+        'lembaga'=>$lembaga,
         'pratahsin1'=>$PraTahsin1,
         'pratahsin2'=>$PraTahsin2,
         'pratahsin3'=>$PraTahsin3,

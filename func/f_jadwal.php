@@ -1,66 +1,46 @@
-<?php
-require '../vendor/autoload.php';
+<?php 
 
-use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
+include '../database/database.php';
+$kelas = $_GET['id'];
 
-$serviceAccount = ServiceAccount::fromJsonFile('../database/lkptarq93-firebase-adminsdk-hrybb-331d42bc6b.json');
+$ref = $database->getReference('TARQ/KELAS/PRIVATE/'.$kelas);
+$sna = $ref->getSnapshot();
+$val = $sna->getValue();
 
-$firebase = (new Factory)
-    ->withServiceAccount($serviceAccount)
-    ->withDatabaseUri('https://lkptarq93.firebaseio.com')
-    ->create();
+var_dump($val);
 
-$database = $firebase->getDatabase();
+if ($val['jmlpertemuan'] == 4) {
+  $loop = 1;
+}elseif($val['jmlpertemuan'] == 8){
+  $loop = 2;
+}elseif($val['jmlpertemuan'] == 12){
+  $loop = 3;
+}elseif($val['jmlpertemuan'] == 16){
+  $loop = 4;
+}
 
-if (isset($_POST['email'])) {
-
+if (isset($_POST['tanggal1'])) {
+  for ($i=1; $i <= $loop; $i++) { 
+    $tanggal.$i = $_POST['tanggal'.$i];
+  }
   
+  $awal = $tanggal1;
+  $akhir = $tanggal.$loop;
 
-  $userProperties = [
-      'email' => $email,
-      'emailVerified' => false,
-      'password' => '12341234',
-      'displayName' => $nama,
-      'disabled' => false
-  ];
-
-  $createdUser = $auth->createUser($userProperties);
-
-  $key = $auth->getUserByEmail($email);
-  
-  $uid = $key->uid;
-  $refrerence = "TARQ/USER/GURU/".$uid;
+  $refrerence = "TARQ/KELAS/PRIVATE/".$kelas;
   $newpost = $database
     ->getReference($refrerence)
     ->set([
-        'id_user'=>$uid,
-        'nama'=>strtoupper($nama),
-        'nohp'=>$nohp,
-        'tanggallahir'=>$newDate,
-        'alamat'=>strtoupper($alamat),
-        'pratahsin1'=>$PraTahsin1,
-        'pratahsin2'=>$PraTahsin2,
-        'pratahsin3'=>$PraTahsin3,
-        'tahsin1'=>$Tahsin1,
-        'tahsin2'=>$Tahsin2,
-        'tahsin3'=>$Tahsin3,
-        'tahfizh'=>$Tahfizh,
-        'bahasaarab'=>$BahasaArab,
-        'latitude'=>'0',
-        'longitude'=>'0',
-        'level'=>3,
-        'verifikasi'=>"true"
+        'nokelas'=>$kelas,
+        'guru'=>$val['guru'],
+        'murid'=>$val['murid'],
+        'idguru'=>$val['idguru'],
+        'idmurid'=>$val['idmurid'],
+        'jadwalhari'=>$newhari,
+        'jadwalawal'=>$awal,
+        'jadwalakhir'=>$akhir,
+        'jmlpertemuan'=>$val['jmlpertemuan'],
     ]);
-  if ($newpost) {
-    echo '<script type="text/javascript">';
-    echo "alert('User ID : $uid Email :$email Password : 12341234');";
-    echo 'window.location.href = "../pages/v_guru.php";';
-    echo '</script>';
-  }else{
-    echo '<script type="text/javascript">alert("Data gagal ditambahkan");</script>';
-  }
 }
 
-include 'v_daftar_penerima.php';
 ?>
