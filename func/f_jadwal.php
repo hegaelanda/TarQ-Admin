@@ -46,7 +46,7 @@ if (isset($_POST['tanggal1'])) {
         'murid'=>$val['murid'],
         'idguru'=>$val['idguru'],
         'idmurid'=>$val['idmurid'],
-        'jadwalhari'=>",".$uploadjadwal."000,",
+        'jadwalhari'=>"000,"$uploadjadwal."000,",
         'jmlpertemuan'=>$val['jmlpertemuan'],
     ]);
     if ($newpost) {

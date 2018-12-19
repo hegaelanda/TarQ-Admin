@@ -82,7 +82,7 @@
                                     <a href="v_request_pengajaran.php"><i class="fa fa-caret-right fa-fw"></i>Request Pengajaran</a>
                                 </li>
                                 <li>
-                                    <a href="v_jadwal.php"><i class="fa fa-caret-right fa-fw"></i>Monitor Jadwal</a>
+                                    <a href="v_monitor_jadwal.php"><i class="fa fa-caret-right fa-fw"></i>Monitor Jadwal</a>
                                 </li>
                             </ul>
                         </li>

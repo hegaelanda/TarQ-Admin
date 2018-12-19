@@ -1,4 +1,4 @@
-<?php
+    <?php
 include 'header.php'; 
 include '../database/database_guru.php';
 ?>
