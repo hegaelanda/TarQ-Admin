@@ -28,7 +28,8 @@
 
     <!-- Custom Fonts -->
     <link href="../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
 </head>
 
 <body>
@@ -60,7 +61,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><button style="background-color: transparent;" onclick="logout();" class="btn-block"><i class="fa fa-sign-out fa-fw"></i> Logout</button>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

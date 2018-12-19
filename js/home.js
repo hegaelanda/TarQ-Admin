@@ -1,3 +1,4 @@
+$(document).ready(function(){
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAEqS1Wm6_ttYeRVrlLHiAwO8St9makmDM",
@@ -19,7 +20,7 @@
 	    window.location="login.php";
 	  }
 	});
-
+});
 function logout(){
 	firebase.auth().signOut().then(function() {
   		// Sign-out successful.

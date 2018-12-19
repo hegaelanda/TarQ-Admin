@@ -12,9 +12,8 @@ $(document).ready(function(){
 
 	firebase.auth().onAuthStateChanged(user=>{
 	  if (user) {
-	    // User is signed in.
 	    console.log("Sudah Login");
-	    /*window.location= "index.php";*/
+	    // window.location= "index.php";
 	  } else {
 	    // No user is signed in.
 	    console.log("Belum Login");
@@ -23,25 +22,27 @@ $(document).ready(function(){
 });	
 
 function login(){
-
 	var userEmail = document.getElementById("inputEmail").value;
 	var userPass = document.getElementById("inputPassword").value;
 
+	document.getElementById("load").style.display="block";
 	firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function(user)
 	{
 		var user = firebase.auth().currentUser;
 		var usr = user.uid;
 		var database = firebase.database();
-		var ref = database.ref('SHAFOOD/USER/ADMIN/'+usr);
+		var ref = database.ref('TARQ/USER/ADMIN/'+usr);
 		ref.on('value',gotData);
 		console.log(usr);
 
+		document.getElementById("load").style.display="none";
 	}).catch(function(error) {
 
-	  var errorCode = error.code;
-	  var errorMessage = error.message;
+		var errorCode = error.code;
+		var errorMessage = error.message;
 
-	  window.alert("Failed to login, " + errorMessage);
+		window.alert("Failed to login, " + errorMessage);
+		document.getElementById("load").style.display="none";
 	});
 }
 
@@ -49,6 +50,7 @@ function gotData(data){
 	var Uid = data.val();
 	if (Uid == null) {
 		firebase.auth().signOut().then(function() {
+			document.getElementById("load").style.display="none";
 			window.alert("Only Admin Account Allowed");
 			location.reload();
 		}).catch(function(error) {
