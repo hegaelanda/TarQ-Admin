@@ -3,7 +3,7 @@ error_reporting(0);
 include '../database/database.php';
 $kelas = $_GET['id'];
 
-$ref = $database->getReference('TARQ/KELAS/PRIVATE/'.$kelas);
+$ref = $database->getReference('TARQ/KELAS/KANTOR/'.$kelas);
 $sna = $ref->getSnapshot();
 $val = $sna->getValue();
 
@@ -48,6 +48,9 @@ if (isset($_POST['tanggal1'])) {
         'idmurid'=>$val['idmurid'],
         'jadwalhari'=>"000,".$uploadjadwal."000,",
         'jmlpertemuan'=>$val['jmlpertemuan'],
+        'lokasilat'=>$val['lokasilat'],
+        'lokasilang'=>$val['lokasilang'],
+        'pelajaran'=>$val['pelajaran'],
     ]);
     if ($newpost) {
       echo "<script>

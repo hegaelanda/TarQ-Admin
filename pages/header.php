@@ -80,7 +80,10 @@
                             <a href="#"><i class="fa fa-calendar fa-fw"></i> Jadwal<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="v_request_pengajaran.php"><i class="fa fa-caret-right fa-fw"></i>Request Pengajaran</a>
+                                    <a href="v_request_private.php"><i class="fa fa-caret-right fa-fw"></i>Request Kelas Private</a>
+                                </li>
+                                <li>
+                                    <a href="v_request_kantor.php"><i class="fa fa-caret-right fa-fw"></i>Request Kelas Kantor</a>
                                 </li>
                                 <li>
                                     <a href="v_monitor_jadwal.php"><i class="fa fa-caret-right fa-fw"></i>Monitor Jadwal</a>

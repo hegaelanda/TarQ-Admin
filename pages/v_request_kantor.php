@@ -1,12 +1,12 @@
 <?php
 include 'header.php'; 
-include '../database/database_kelas.php';
+include '../database/database_kantor.php';
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Request Pengajaran</h1>
+      <h1 class="page-header">Request Kelas Kantor</h1>
     </div>
     <!-- /.col-lg-12 -->
   </div>
@@ -15,7 +15,7 @@ include '../database/database_kelas.php';
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          List Request
+          List Request Kantor
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -40,7 +40,7 @@ include '../database/database_kelas.php';
                       <td><?php echo $val['murid']; ?></td>
                       <td><?php echo $val['guru']; ?></td>
                       <td><?php echo $key ?></td>
-                      <td><a class="btn btn-primary" href="v_lengkapi_jadwal.php?id=<?php echo $key ?>"><i class="fa fa-arrow-right"></i></a></td>
+                      <td><a class="btn btn-primary" href="v_lengkapi_jadwal_k.php?id=<?php echo $key ?>"><i class="fa fa-arrow-right"></i></a></td>
                     </tr>
                     <?php 
                   }
