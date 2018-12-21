@@ -39,6 +39,8 @@ echo "<script>var loop = $loop;</script>";
         <!-- /.panel-heading -->
         <div class="panel-body">
           <form class="form-horizontal" method="POST" action="../func/f_jadwal_k.php?id=<?php echo $kelas ?>">
+            <label for="ruang">Ruang :</label>
+            <input type="number" id="ruang" name="ruang" class="form-control">
             <label for="waktu">Waktu :</label>
             <input type="text" name="waktu" id="time" style="display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 4px;">
             <br>

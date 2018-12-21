@@ -30,12 +30,12 @@ include '../database/database_kelas.php';
                     <?php $no = 1;
                     foreach ($value as $key => $val) {
                       if (isset($val['jadwalhari'])) {
-                        if ($val['jadwalhari']!=='request'||$val['jadwalhari']!=='process') {
+                        if ($val['jadwalhari']!=='request' && $val['jadwalhari']!=='process') {
                           ?>
                           <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $key ?></td>
-                            <td><?php echo $val['murid']; ?></td>
+                            <td><?php echo $val['guru'] ?></td>
                             <td><?php echo $val['guru']; ?></td>
                             <td><a class="btn btn-primary" href="v_detail_jadwal.php?id=<?php echo $key ?>"><i class="fa fa-arrow-right"></i></a></td>
                           </tr>
