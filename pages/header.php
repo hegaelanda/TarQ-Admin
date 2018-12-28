@@ -76,7 +76,7 @@
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
+                        <li id="exadmin1" style="display: block;">
                             <a href="#"><i class="fa fa-calendar fa-fw"></i> Jadwal<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -90,26 +90,38 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li id="exadmin2" style="display: block;">
                             <a href="v_pembayaran.php"><i class="fa fa-get-pocket fa-fw"></i> Pembayaran</a>
                         </li>
-                        <li>
+                        <li id="exadmin3" style="display: block;">
                             <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Guru<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="v_guru.php"><i class="fa fa-caret-right fa-fw"></i>List Guru</a>
                                 </li>
                                 <li>
-                                    <a href="v_daftar_guru.php"><i class="fa fa-caret-right fa-fw"></i>Daftar Guru</a>
+                                    <a href="v_daftar_guru.php"><i class="fa fa-caret-right fa-fw"></i>Pendaftaran Guru</a>
                                 </li>
                                 <li>
-                                    <a href="v_antrian_guru.php"><i class="fa fa-caret-right fa-fw"></i>Antrian Guru</a>
+                                    <a href="v_antrian_guru.php"><i class="fa fa-caret-right fa-fw"></i>Verifikasi Guru</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                        <li id="exadmin4" style="display: block;">
                             <a href="v_jamaah.php"><i class="fa fa-users fa-fw"></i> Jamaah</a>
+                        </li>
+                        <li id="admin" style="display: none;">
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Admin<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="v_tambah_admin.php"><i class="fa fa-caret-right fa-fw"></i>Tambah Admin</a>
+                                </li>
+                                <li>
+                                    <a href="v_admin.php"><i class="fa fa-caret-right fa-fw"></i>List Admin</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>

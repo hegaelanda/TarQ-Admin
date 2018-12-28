@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'header.php'; 
 include '../database/database_guru.php';
 include '../database/database_lembaga.php';
@@ -29,7 +30,7 @@ include '../database/database_lembaga.php';
               <textarea class="form-control" name="alamat" placeholder="Masukan Alamat Guru"></textarea>
               <br>
               <label for="lembaga">Lembaga :</label>
-              <select name="lembaga" id="lembaga" class="form-control" onchange="otherCheck(this);">
+              <select name="lembaga" id="lembaga" class="form-control" onchange="otherCheck(this);" required>
               <?php 
               for ($i=0; $i < count($lembagaArr); $i++) {
               ?>
@@ -44,9 +45,8 @@ include '../database/database_lembaga.php';
                 <input type="text" class="form-control" name="lembagabaru" placeholder="Masukan Lembaga Baru">
               </div>
               <br>
-              <div class="">
-                <label>Keahlian Guru :</label>
-              </div>
+              <label>Keahlian Guru :</label>
+              <br>
               <div class="col-sm-2" style="margin-left: -15px;">
                 <div class="checkbox">
                   <label>
@@ -80,6 +80,11 @@ include '../database/database_lembaga.php';
                     <input type="checkbox" name="Tahsin3" value="Tahsin3">Tahsin 3
                   </label>
                 </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="Tahsin4" value="Tahsin4">Tahsin 4
+                  </label>
+                </div>
               </div>
               <div class="col-sm-2">
                 <div class="checkbox">
@@ -93,13 +98,29 @@ include '../database/database_lembaga.php';
                   </label>
                 </div>
               </div>
-              <br><br><br><br><br><br>
+              <br><br><br><br><br><br><br>
               <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
               <button type="reset" class="btn btn-danger"><i class="fa fa-repeat"></i> Reset</button>
             </form>
             <hr>
             <h1 class="page-header">Daftar Guru <small>(Import CSV)</small></h1>
             <form method="POST" enctype="multipart/form-data" action="../func/f_importCsv.php">
+              <label for="lembagacsv">Lembaga :</label>
+              <select name="lembagacsv" id="lembagacsv" class="form-control" onchange="otherCheckCsv(this);" required>
+              <?php 
+              for ($i=0; $i < count($lembagaArr); $i++) {
+              ?>
+                <option value="<?php echo $lembagaArr[$i] ?>"><?php echo $lembagaArr[$i]; ?></option> 
+              <?php
+              }
+              ?>
+                <option value="other" id="othercsv">Lainnya</option>
+              </select>
+              <div id="ifOtherCsv" style="display: none;">
+                <br>
+                <input type="text" class="form-control" name="lembagabarucsv" placeholder="Masukan Lembaga Baru">
+              </div>
+              <br>
               <label for="fileInput">File CSV :</label>
               <input type="file" id="fileInput" accept=".csv" name="csv">
               <br>
@@ -123,6 +144,13 @@ include '../database/database_lembaga.php';
             document.getElementById("ifOther").style.display = "block";
         } else {
             document.getElementById("ifOther").style.display = "none";
+        }
+    }
+    function otherCheckCsv(that) {
+        if (that.value == "other") {
+            document.getElementById("ifOtherCsv").style.display = "block";
+        } else {
+            document.getElementById("ifOtherCsv").style.display = "none";
         }
     }
 </script>

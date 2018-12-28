@@ -1,13 +1,13 @@
 <?php
 session_start();
-include 'header.php'; 
-include '../database/database_guru.php';
+include 'head_admin.php'; 
+include '../database/database_admin.php';
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Data Guru</h1>
+                    <h1 class="page-header">Data Admin</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -16,7 +16,7 @@ include '../database/database_guru.php';
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            List Guru
+                            List Admin
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -25,7 +25,7 @@ include '../database/database_guru.php';
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>No HP</th>
+                                        <th>Hak Akses</th>
                                         <th>Created At</th>
                                         <th>Last Login At</th>
                                     </tr>
@@ -34,13 +34,12 @@ include '../database/database_guru.php';
                                     <?php $no = 1;
                                       foreach ($value as $key => $val) {
                                         $user = $auth->getUser($key);
-                                        if (isset($val['id_user'])) {
-                                          if ($val['verifikasi'] == 'true') {
+                                        if (isset($val['id'])) {
                                           ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td><?php echo $val['nama']; ?></td>
-                                                <td><?php echo $val['nohp']; ?></td>
+                                                <td><?php echo $val['akses']; ?></td>
                                                 <td id="createdAt">
                                                   <?php
                                                   $createdAt = $user->metadata->createdAt;
@@ -59,7 +58,6 @@ include '../database/database_guru.php';
                                                 </td>
                                             </tr>
                                     <?php 
-                                          }
                                         }
                                       }
                                     ?>

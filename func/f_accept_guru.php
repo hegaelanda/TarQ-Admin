@@ -1,9 +1,10 @@
 <?php
+session_start();
 include '../database/database.php';
 $uid = $_GET['uid'];
 
 $updates = [
-    'TARQ/USER/GURU/'.$uid.'/verifikasi' => "true",
+    'TARQ/USER/GURU/'.$_SESSION['akses'].'/'.$uid.'/verifikasi' => "true",
 ];
 
 $reference = $database->getReference()

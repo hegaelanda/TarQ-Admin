@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'header.php'; 
 include '../database/database_guru.php';
 ?>
@@ -6,7 +7,7 @@ include '../database/database_guru.php';
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Antrian Guru</h1>
+      <h1 class="page-header">Verifikasi Guru</h1>
     </div>
     <!-- /.col-lg-12 -->
   </div>
@@ -79,39 +80,46 @@ include '../database/database_guru.php';
       </div>
       <div class="modal-body">
         <table class="table table-bordered table-striped">
-          <!-- <tr>
-            <td colspan="2" class="text-center">
-              <img src="" id="picture" width="90" height="90"></img>
-            </td>
-          </tr> -->
           <tr>
-            <td class="text-center"><b>ID</b></i></td>
-            <td colspan="2"><span id="id_user"></span></td>
+            <td colspan="2" class="text-center"><b>BIODATA</b></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center">
+              <img src="https://image.flaticon.com/icons/svg/149/149071.svg" id="picture" width="20%" height="20%"></img>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center" style="width: 10%;"><b>ID</b></i></td>
+            <td><span id="id_user"></span></td>
           </tr>
           <tr>
             <td class="text-center"><i class="fa fa-user"></i></td>
-            <td colspan="2"><span id="name"></span></td>
+            <td><span id="name"></span></td>
           </tr>
           <tr>
             <td class="text-center"><i class="fa fa-phone"></i></td>
-            <td colspan="2"><span id="nohp"></span></td>
-          </tr>
-          <tr>
-            <td class="text-center"><i class="fa fa-map-marker"></i></td>
-            <td colspan="2"><span id="alamat"></span>
-            </td>
+            <td><span id="nohp"></span></td>
           </tr>
           <tr>
             <td class="text-center"><b><i class="fa fa-calendar"></i></b></td>
-            <td colspan="2"><span id="tanggallahir"></span></td>
+            <td><span id="tanggallahir"></span></td>
           </tr>
           <tr>
-            <td align="center" colspan="3"><b>ABILITY</b></td>
+            <td class="text-center"><i class="fa fa-map-marker"></i></td>
+            <td><span id="alamat"></span></td>
           </tr>
           <tr>
-            <td align="center">Pra Tahsin 1</td>
-            <td align="center">Pra Tahsin 2</td>
-            <td align="center">Pra Tahsin 3</td>
+            <td class="text-center" colspan="2"><a href="" target="_blank" id="googlemaps" class="btn btn-primary">Google Maps</a></td>
+          </tr>
+        </table>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <td align="center" colspan="3"><b>KEAHLIAN</b></td>
+          </tr>
+          <tr>
+            <td align="center" style="width: 33.33%;">Pra Tahsin 1</td>
+            <td align="center" style="width: 33.33%;">Pra Tahsin 2</td>
+            <td align="center" style="width: 33.33%;">Pra Tahsin 3</td>
           </tr>
           <tr>
             <td align="center"><i id="pratahsin1" class="fa"></i></td>
@@ -119,9 +127,9 @@ include '../database/database_guru.php';
             <td align="center"><i id="pratahsin3" class="fa"></i></td>
           </tr>
           <tr>
-            <td align="center">Tahsin 1</td>
-            <td align="center">Tahsin 2</td>
-            <td align="center">Tahsin 3</td>
+            <td align="center" style="width: 33.33%;">Tahsin 1</td>
+            <td align="center" style="width: 33.33%;">Tahsin 2</td>
+            <td align="center" style="width: 33.33%;">Tahsin 3</td>
           </tr>
           <tr>
             <td align="center"><i id="tahsin1" class="fa"></i></td>
@@ -129,14 +137,24 @@ include '../database/database_guru.php';
             <td align="center"><i id="tahsin3" class="fa"></i></td>
           </tr>
           <tr>
-            <td align="center">Tahfizh</td>
-            <td align="center">Bahasa Arab</td>
-            <td align="center"></td>
+            <td align="center" style="width: 33.33%;">Tahsin 4</td>
+            <td align="center" style="width: 33.33%;">Tahfizh</td>
+            <td align="center" style="width: 33.33%;">Bahasa Arab</td>
           </tr>
           <tr>
+            <td align="center"><i id="tahsin4" class="fa"></i></td>
             <td align="center"><i id="tahfizh" class="fa"></i></td>
             <td align="center"><i id="bahasaarab" class="fa"></i></td>
-            <td align="center"><i></i></td>
+          </tr>
+        </table>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <td align="center"><b>LAMPIRAN</b></td>
+          </tr>
+          <tr>
+            <td align="center">
+              <img src="" alt="sertifikat">
+            </td>
           </tr>
         </table>
       </div>
@@ -212,6 +230,13 @@ include '../database/database_guru.php';
         }else{
           t3.classList.add("fa-times");
         }
+        var tahsin4 = data.tahsin4;
+        var t4 = document.getElementById("tahsin4");
+        if (tahsin4 == "true") {
+          t4.classList.add("fa-check");
+        }else{
+          t4.classList.add("fa-times");
+        }
 
         var tahfizh = data.tahfizh;
         var t = document.getElementById("tahfizh");
@@ -231,12 +256,8 @@ include '../database/database_guru.php';
         var thelat = parseFloat(data.latitude);
         var thelong = parseFloat(data.longitude);
 
-        console.log(thelat,thelong)
-
-        var dimana = {lat : thelat, lng : thelong};
-
-        var peta = new google.maps.Map(document.getElementById('map'), {zoom: 16, center: dimana});
-        var marker = new google.maps.Marker({position:dimana, map: peta});
+        var googlemapsURL = "https://www.google.com/maps/place/"+thelat+","+thelong;
+        document.getElementById('googlemaps').href = googlemapsURL;
 
         var storage = firebase.app().storage("gs://lkptarq93.appspot.com/");
 
@@ -249,11 +270,10 @@ include '../database/database_guru.php';
         var penerimaRef = imagesRef.child(fileName);
 
         penerimaRef.getDownloadURL().then(function(url) {
-          console.log(url)
           document.getElementById('picture').src = url;
         }).catch(function(error) {
-                // Handle any errors
-                console.log(error)
+                document.getElementById('picture').src = "https://image.flaticon.com/icons/svg/149/149071.svg";
+                
               });
               // return false;
             }

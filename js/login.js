@@ -31,7 +31,7 @@ function login(){
 		var user = firebase.auth().currentUser;
 		var usr = user.uid;
 		var database = firebase.database();
-		var ref = database.ref('TARQ/USER/ADMIN/'+usr);
+		var ref = database.ref('TARQ/ADMIN/'+usr);
 		ref.on('value',gotData);
 		console.log(usr);
 
@@ -57,7 +57,8 @@ function gotData(data){
 			window.alert("ERROR!!");
 		});
 	}else{
+		console.log(Uid['akses'])
 		window.alert("Welcome Admin");
-		window.location="index.php";
+		window.location="load.php?id="+Uid['id']+"&akses="+Uid['akses'];
 	}
 }

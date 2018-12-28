@@ -1,6 +1,6 @@
 <?php
 include 'database.php';
-$reference = $database->getReference('TARQ/USER/GURU/'.$_SESSION['akses']);
+$reference = $database->getReference('TARQ/ADMIN');
 $snapshot = $reference->getSnapshot();
 $value = $snapshot->getValue();
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../database/database_lembaga.php';
 require '../vendor/autoload.php';
 
@@ -68,6 +69,11 @@ if (isset($_POST['email'])) {
   }else{
     $Tahsin3 = "false";
   }
+  if (isset($_POST['Tahsin4'])) {
+    $Tahsin4 = "true";
+  }else{
+    $Tahsin4 = "false";
+  }
   if (isset($_POST['Tahfizh'])) {
     $Tahfizh = "true";
   }else{
@@ -78,75 +84,59 @@ if (isset($_POST['email'])) {
   }else{
     $BahasaArab = "false";
   }
+if (isset($_SESSION['akses'])){
+    $userProperties = [
+        'email'         => $email,
+        'emailVerified' => true,
+        'password'      => '12341234',
+        'displayName'   => $nama,
+        'disabled'      => false
+    ];
 
-  $userProperties = [
-      'email'         => $email,
-      'emailVerified' => false,
-      'password'      => '12341234',
-      'displayName'   => $nama,
-      'disabled'      => false
-  ];
+    $createdUser = $auth->createUser($userProperties);
 
-  $createdUser = $auth->createUser($userProperties);
+    $key = $auth->getUserByEmail($email);
 
-  $key = $auth->getUserByEmail($email);
+    //set guru baru
+    $uid = $key->uid;
+    $refrerence = "TARQ/USER/GURU/".$_SESSION['akses']."/".$uid;
+    $newpost = $database
+      ->getReference($refrerence)
+      ->set([
+          'id_user'       =>$uid,
+          'nama'          =>strtoupper($nama),
+          'nohp'          =>$nohp,
+          'tanggallahir'  =>$newDate,
+          'alamat'        =>strtoupper($alamat),
+          'lembaga'       =>strtoupper($lembaga),
+          'pratahsin1'    =>$PraTahsin1,
+          'pratahsin2'    =>$PraTahsin2,
+          'pratahsin3'    =>$PraTahsin3,
+          'tahsin1'       =>$Tahsin1,
+          'tahsin2'       =>$Tahsin2,
+          'tahsin3'       =>$Tahsin3,
+          'tahsin4'       =>$Tahsin4,
+          'tahfizh'       =>$Tahfizh,
+          'bahasaarab'    =>$BahasaArab,
+          'latitude'      =>'0',
+          'longitude'     =>'0',
+          'latitudeRumah' =>'0',
+          'longitudeRumah'=>'0',
+          'saldo'         =>0,
+          'level'         =>3,
+          'verifikasi'    =>"true"
+      ]);
 
-  //set guru baru
-  $uid = $key->uid;
-  $refrerence = "TARQ/USER/GURU/".$uid;
-  $newpost = $database
-    ->getReference($refrerence)
-    ->set([
-<<<<<<< HEAD
-        'id_user'=>$uid,
-        'nama'=>strtoupper($nama),
-        'nohp'=>$nohp,
-        'tanggallahir'=>$newDate,
-        'alamat'=>strtoupper($alamat),
-        'lembaga'=>$lembaga,
-        'pratahsin1'=>$PraTahsin1,
-        'pratahsin2'=>$PraTahsin2,
-        'pratahsin3'=>$PraTahsin3,
-        'tahsin1'=>$Tahsin1,
-        'tahsin2'=>$Tahsin2,
-        'tahsin3'=>$Tahsin3,
-        'tahfizh'=>$Tahfizh,
-        'bahasaarab'=>$BahasaArab,
-        'latitude'=>'0',
-        'longitude'=>'0',
-        'level'=>3,
-        'verifikasi'=>"true"
-=======
-        'id_user'       =>$uid,
-        'nama'          =>strtoupper($nama),
-        'nohp'          =>$nohp,
-        'tanggallahir'  =>$newDate,
-        'alamat'        =>strtoupper($alamat),
-        'lembaga'       =>strtoupper($lembaga),
-        'pratahsin1'    =>$PraTahsin1,
-        'pratahsin2'    =>$PraTahsin2,
-        'pratahsin3'    =>$PraTahsin3,
-        'tahsin1'       =>$Tahsin1,
-        'tahsin2'       =>$Tahsin2,
-        'tahsin3'       =>$Tahsin3,
-        'tahfizh'       =>$Tahfizh,
-        'bahasaarab'    =>$BahasaArab,
-        'latitude'      =>'0',
-        'longitude'     =>'0',
-        'level'         =>3,
-        'verifikasi'    =>"true"
->>>>>>> 55652297c7144162c33b7c1f7db111fd2ab83309
-    ]);
-
-  if ($newpost) {
-    echo '<script type="text/javascript">';
-    echo "alert('User ID : $uid Email :$email Password : 12341234');";
-    echo 'window.location.href = "../pages/v_guru.php";';
-    echo '</script>';
+    if ($newpost) {
+      echo '<script type="text/javascript">';
+      echo "alert('User ID : $uid Email :$email Password : 12341234');";
+      echo 'window.location.href = "../pages/v_guru.php";';
+      echo '</script>';
+    }else{
+      echo '<script type="text/javascript">alert("Data gagal ditambahkan");</script>';
+    }
   }else{
-    echo '<script type="text/javascript">alert("Data gagal ditambahkan");</script>';
+    echo '<script type="text/javascript">alert("Kesalahan, Coba Login Ulang");</script>';
   }
 }
-
-include 'v_daftar_penerima.php';
 ?>
