@@ -32,6 +32,7 @@ include '../database/database_guru.php';
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
+                                    if (isset($value)) {
                                       foreach ($value as $key => $val) {
                                         $user = $auth->getUser($key);
                                         if (isset($val['id_user'])) {
@@ -62,6 +63,7 @@ include '../database/database_guru.php';
                                           }
                                         }
                                       }
+                                    }
                                     ?>
                               </tbody>
                             </table>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'header.php'; 
 include '../database/database_kelas.php';
 ?>
@@ -40,7 +41,7 @@ include '../database/database_kelas.php';
                       <td><?php echo $val['murid']; ?></td>
                       <td><?php echo $val['guru']; ?></td>
                       <td><?php echo $key ?></td>
-                      <td><a class="btn btn-primary" href="v_lengkapi_jadwal_p.php?id=<?php echo $key ?>"><i class="fa fa-arrow-right"></i></a></td>
+                      <td align="center"><a class="btn btn-primary" href="v_lengkapi_jadwal_p.php?id=<?php echo $key ?>"><i class="fa fa-arrow-right"></i></a></td>
                     </tr>
                     <?php 
                   }

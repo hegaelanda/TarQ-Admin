@@ -1,3 +1,5 @@
+<?php 
+session_start(); ?>
 <script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
 <link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 <?php
@@ -6,10 +8,9 @@ include 'header.php';
 include '../database/database.php';
 $kelas = $_GET['id'];
 
-$ref = $database->getReference('TARQ/KELAS/PRIVATE/'.$kelas);
+$ref = $database->getReference('TARQ/KELAS/PRIVATE/'.$_SESSION['akses'].'/'.$kelas);
 $sna = $ref->getSnapshot();
 $val = $sna->getValue();
-
 if ($val['jmlpertemuan'] == 4) {
   $loop = 1;
 }elseif($val['jmlpertemuan'] == 8){
@@ -89,6 +90,7 @@ echo "<script>var loop = $loop;</script>";
     
     var value = (evt.hour || '00') + ':' + (evt.minute || '00');
     evt.element.value = value;
+    console.log(value)
 
   });
 

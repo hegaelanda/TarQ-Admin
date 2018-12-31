@@ -1,3 +1,5 @@
+<?php 
+session_start(); ?>
 <div align="center" class="lds-css ng-scope" id="load"><div style="width:100%;height:100%" class="lds-double-ring"><div></div><div></div></div><style type="text/css">@keyframes lds-double-ring {
   0% {
     -webkit-transform: rotate(0);
@@ -74,15 +76,15 @@ error_reporting(0);
 include '../database/database.php';
 $kelas = $_GET['id'];
 
-$ref = $database->getReference('TARQ/KELAS/PRIVATE/'.$kelas);
+$ref = $database->getReference('TARQ/KELAS/PRIVATE/'.$_SESSION['akses'].'/'.$kelas);
 $sna = $ref->getSnapshot();
 $val = $sna->getValue();
 
-$newref = $database->getReference('TARQ/KELAS/PRIVATE');
+$newref = $database->getReference('TARQ/KELAS/PRIVATE/'.$_SESSION['akses']);
 $newsna = $newref->getSnapshot();
 $newval = $newsna->getValue();
 
-$newdb = $database->getReference('TARQ/KELAS/PRIVATE')->getChildKeys();
+$newdb = $database->getReference('TARQ/KELAS/PRIVATE/'.$_SESSION['akses'])->getChildKeys();
 
 for ($z=0; $z < count($newdb); $z++) { 
   if ($newval[$newdb[$z]]['idguru'] == $val['idguru'] && $newval[$newdb[$z]]['jadwalhari'] != 'request') { 
@@ -114,7 +116,7 @@ if (isset($_POST['tanggal1'])) {
   while($i < 4){
     for ($j=1; $j <= $loop ; $j++) { 
       date_default_timezone_set('Asia/Jakarta');
-      ${"jadwal$n"} = date('Y-m-d h:i:s', strtotime('+'.$i.' week', strtotime(${"tanggal$j"})));;
+      ${"jadwal$n"} = date('Y-m-d H:i:s', strtotime('+'.$i.' week', strtotime(${"tanggal$j"})));;
       ${"newjadwal$n"} = strtotime(${"jadwal$n"});
       array_push($jadarr, ${"newjadwal$n"});
       $n++;
@@ -126,7 +128,7 @@ if (isset($_POST['tanggal1'])) {
   // echo "<br><br>";
   // print_r($newupload);
   if ($newupload != $banding) {
-    $refrerence = "TARQ/KELAS/PRIVATE/".$kelas;
+    $refrerence = "TARQ/KELAS/PRIVATE/".$_SESSION['akses']."/".$kelas;
     $newpost = $database
       ->getReference($refrerence)
       ->set([

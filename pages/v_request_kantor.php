@@ -1,6 +1,5 @@
 <?php
-include 'header.php'; 
-include '../database/database_kantor.php';
+include 'header.php';
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
@@ -12,49 +11,240 @@ include '../database/database_kantor.php';
   </div>
   <!-- /.row -->
   <div class="row">
-    <div class="col-lg-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          List Request Kantor
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Jamaah</th>
-                <th>Guru</th>
-                <th>ID Pengajaran</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php $no = 1;
-              foreach ($value as $key => $val) {
-                if (isset($val['jadwalhari'])) {
-                  if ($val['jadwalhari']=='request') {
-                    ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $val['murid']; ?></td>
-                      <td><?php echo $val['guru']; ?></td>
-                      <td><?php echo $key ?></td>
-                      <td><a class="btn btn-primary" href="v_lengkapi_jadwal_k.php?id=<?php echo $key ?>"><i class="fa fa-arrow-right"></i></a></td>
-                    </tr>
-                    <?php 
-                  }
-                }
-              }
-              ?>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.panel-body -->
+      <div class="col-lg-6 col-md-6">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Tahfizh</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                    <span class="pull-left">Pilih Pertemuan :</span>
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=tahfizh&per=4" class="btn btn-primary btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahfizh&per=8" class="btn btn-primary btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahfizh&per=12" class="btn btn-primary btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahfizh&per=16" class="btn btn-primary btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
       </div>
-      <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
+      <div class="col-lg-6 col-md-6">
+          <div class="panel panel-green">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Bahasa Arab</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                    <span class="pull-left" style="color: green;">Pilih Pertemuan :</span>
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=bahasaarab&per=4" class="btn btn-success btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=bahasaarab&per=8" class="btn btn-success btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=bahasaarab&per=12" class="btn btn-success btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=bahasaarab&per=16" class="btn btn-success btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-4 col-md-6">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Pra Tahsin 1</div>
+                      </div>
+                  </div>
+              </div>
+             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                    <span class="pull-left">Pilih Pertemuan :</span>
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin1&per=4" class="btn btn-primary btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin1&per=8" class="btn btn-primary btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin1&per=12" class="btn btn-primary btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin1&per=16" class="btn btn-primary btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+          <div class="panel panel-green">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Pra Tahsin 2</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                    <span class="pull-left" style="color: green;">Pilih Pertemuan :</span>
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin2&per=4" class="btn btn-success btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin2&per=8" class="btn btn-success btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin2&per=12" class="btn btn-success btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin2&per=16" class="btn btn-success btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+          <div class="panel panel-yellow">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Pra Tahsin 3</div>
+                      </div>
+                  </div>
+              </div>
+             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                    <span class="pull-left" style="color: orange;">Pilih Pertemuan :</span>
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin3&per=4" class="btn btn-warning btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin3&per=8" class="btn btn-warning btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin3&per=12" class="btn btn-warning btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=pratahsin3&per=16" class="btn btn-warning btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Tahsin1</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin1&per=4" class="btn btn-primary btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin1&per=8" class="btn btn-primary btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin1&per=12" class="btn btn-primary btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin1&per=16" class="btn btn-primary btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-green">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Tahsin2</div>
+                      </div>
+                  </div>
+              </div>
+               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin2&per=4" class="btn btn-success btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin2&per=8" class="btn btn-success btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin2&per=12" class="btn btn-success btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin2&per=16" class="btn btn-success btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-yellow">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Tahsin3</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin3&per=4" class="btn btn-warning btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin3&per=8" class="btn btn-warning btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin3&per=12" class="btn btn-warning btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin3&per=16" class="btn btn-warning btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-red">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-2">
+                          <i class="fa fa-comments fa-4x"></i>
+                      </div>
+                      <div class="col-xs-10 text-right">
+                          <div class="huge">Tahsin4</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <div class="panel-footer">
+                      <div class="pull-right">
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin4&per=4" class="btn btn-danger btn-sm">4</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin4&per=8" class="btn btn-danger btn-sm">8</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin4&per=12" class="btn btn-danger btn-sm">12</a></span>
+                        <span><a href="v_jadwal_kantor.php?pel=tahsin4&per=16" class="btn btn-danger btn-sm">16</a></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
   </div>
 </div>
 <!-- /#page-wrapper -->

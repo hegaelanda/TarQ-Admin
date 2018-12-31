@@ -1,7 +1,9 @@
 <?php
+session_start();
 include 'header.php'; 
 include '../database/database_jamaah.php';
 ?>
+
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">

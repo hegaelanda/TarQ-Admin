@@ -1,3 +1,4 @@
+
 <!-- jQuery -->
     <script src="../assets/jquery/jquery.min.js"></script>
 
@@ -24,7 +25,6 @@
         });
     });
     </script>
-    
 </body>
 
 </html>

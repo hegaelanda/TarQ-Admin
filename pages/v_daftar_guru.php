@@ -154,4 +154,13 @@ include '../database/database_lembaga.php';
         }
     }
 </script>
-<?php include 'footer.php'; ?>
+
+<?php include 'footer.php';
+include '../js/home.js';
+if (!isset($_SESSION['id_admin'])) {
+  echo '<script type="text/javascript">';
+  echo 'alert("Session Expired, Please Re-Login");';
+  echo 'logout();';
+  echo '</script>';
+}
+?>

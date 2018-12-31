@@ -1,7 +1,7 @@
 <?php 
 include 'database.php';
 
-$reference = $database->getReference('TARQ/KELAS/KANTOR');
+$reference = $database->getReference('TARQ/KELAS/KANTOR/'.$_SESSION['akses']);
 $snapshot = $reference->getSnapshot();
-$value = $snapshot->getValue();
+$valuek = $snapshot->getValue();
 ?>

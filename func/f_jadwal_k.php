@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <div align="center" class="lds-css ng-scope" id="load"><div style="width:100%;height:100%" class="lds-double-ring"><div></div><div></div></div><style type="text/css">@keyframes lds-double-ring {
   0% {
     -webkit-transform: rotate(0);
@@ -70,26 +71,51 @@
 }
 </style></div>
 <?php 
-error_reporting(0);
+// error_reporting(0);
 include '../database/database.php';
-$kelas = $_GET['id'];
 
-$ref = $database->getReference('TARQ/KELAS/KANTOR/'.$kelas);
-$sna = $ref->getSnapshot();
-$val = $sna->getValue();
+//ambil guru
+$guru = $_POST['guru'];
+$refguru= $database->getReference('TARQ/USER/GURU/'.$_SESSION['akses'].'/'.$guru);
+$snapguru = $refguru->getSnapshot();
+$valguru = $snapguru->getValue();
 
-if ($val['jmlpertemuan'] == '4') {
+$namaguru = $valguru['nama'];
+
+//ambil jamaah
+$murid = $_POST['murid'];
+$arrnamamurid = array();
+$arridmurid = array();
+$keys = array_keys($database->getReference('TARQ/KELAS/KANTOR/'.$_SESSION['akses'])->shallow()->getValue());
+
+for ($m=0; $m < count($murid) ; $m++) { 
+  ${"refmurid$m"} = $database->getReference('TARQ/USER/JAMAAH/'.$_SESSION['akses'].'/'.$murid[$m]);
+  ${"snapmurid$m"} = ${"refmurid$m"}->getSnapshot();
+  ${"valmurid$m"} = ${"snapmurid$m"}->getValue();
+
+  array_push($arrnamamurid, ${"valmurid$m"}['nama']);
+  array_push($arridmurid, ${"valmurid$m"}['id_user']);
+}
+
+//set variable otw firebase
+$newnamamurid = implode(",", $arrnamamurid);
+$newidmurid = implode(",", $arridmurid);
+$pel = $_GET['pel'];
+$per = $_GET['per'];
+$waktu = $_POST['waktu'];
+
+//set looping tergantung pertemuan
+if ($per == '4') {
   $loop = 1;
-}elseif($val['jmlpertemuan'] == '8'){
+}elseif($per == '8'){
   $loop = 2;
-}elseif($val['jmlpertemuan'] == '12'){
+}elseif($per == '12'){
   $loop = 3;
-}elseif($val['jmlpertemuan'] == '16'){
+}elseif($per == '16'){
   $loop = 4;
 }
-$waktu = $_POST['waktu'];
-$ruang = $_POST['ruang'];
 
+//bikin jadwal hari
 if (isset($_POST['tanggal1'])) {
   for ($i=1; $i <= $loop; $i++) { 
     ${"tgl$i"} = $_POST["tanggal$i"];
@@ -101,7 +127,7 @@ if (isset($_POST['tanggal1'])) {
   while($i < 4){
     for ($j=1; $j <= $loop ; $j++) { 
       date_default_timezone_set('Asia/Jakarta');
-      ${"jadwal$n"} = date('Y-m-d h:i:s', strtotime('+'.$i.' week', strtotime(${"tanggal$j"})));;
+      ${"jadwal$n"} = date('Y-m-d H:i:s', strtotime('+'.$i.' week', strtotime(${"tanggal$j"})));;
       ${"newjadwal$n"} = strtotime(${"jadwal$n"});
       array_push($jadarr, ${"newjadwal$n"});
       $n++;
@@ -109,28 +135,54 @@ if (isset($_POST['tanggal1'])) {
     $i++;
   }
   $uploadjadwal = implode("000,", $jadarr);
-  $refrerence = "TARQ/KELAS/KANTOR/".$kelas;
+  
+  //berangkat ke firebase
+  $refrerence = "TARQ/KELAS/KANTOR/".$_SESSION['akses'];
   $newpost = $database
     ->getReference($refrerence)
-    ->set([
-        'nokelas'=>$kelas,
-        'guru'=>$val['guru'],
-        'murid'=>$val['murid'],
-        'idguru'=>$val['idguru'],
-        'idmurid'=>$val['idmurid'],
+    ->push([
+        'guru'=>$namaguru,
+        'murid'=>$newnamamurid,
+        'idguru'=>$guru,
+        'idmurid'=>$newidmurid,
         'jadwalhari'=>"000,".$uploadjadwal."000,",
-        'jmlpertemuan'=>$val['jmlpertemuan'],
-        'lokasilat'=>$val['lokasilat'],
-        'lokasilang'=>$val['lokasilang'],
-        'pelajaran'=>$val['pelajaran'],
-        'ruang'=>$ruang
+        'jmlpertemuan'=>$per,
+        'lokasilat'=>"-6.894144",
+        'lokasilang'=>"107.629769",
+        'pelajaran'=>$pel
     ]);
-    if ($newpost) {
-      echo "<script>
-        alert('Success');
-        window.location.href='../pages/v_request_kantor.php';
-        </script>";
+
+  $thekey = $newpost->getKey();
+  $nokelas = ['TARQ/KELAS/KANTOR/'.$_SESSION['akses'].'/'.$thekey.'/nokelas' => $thekey];
+
+  $reference = $database->getReference()->update($nokelas);
+
+  for ($m=0; $m < count($murid) ; $m++) { 
+    ${"refmurid$m"} = $database->getReference('TARQ/USER/JAMAAH/'.$_SESSION['akses'].'/'.$murid[$m]);
+    ${"snapmurid$m"} = ${"refmurid$m"}->getSnapshot();
+    ${"valmurid$m"} = ${"snapmurid$m"}->getValue();
+
+    array_push($arrnamamurid, ${"valmurid$m"}['nama']);
+    array_push($arridmurid, ${"valmurid$m"}['id_user']);
+
+    //hapus kelas sebelumnya
+    for ($h=0; $h < count($keys); $h++) {
+      ${"refkelas$h"} = $database->getReference('TARQ/KELAS/KANTOR/'.$_SESSION['akses'].'/'.$keys[$h]);
+      ${"snapkelas$h"} = ${"refkelas$h"}->getSnapshot();
+      ${"valkelas$h"} = ${"snapkelas$h"}->getValue();
+
+      if (${"valkelas$h"}['idmurid'] == ${"valmurid$m"}['id_user']) {
+          $deletekelas = $database->getReference('TARQ/KELAS/KANTOR/'.$_SESSION['akses'].'/'.$keys[$h])->remove();
+      }
     }
+  }
+  //feedback
+  if ($newpost) {
+    echo "<script>
+      alert('Success');
+      window.location.href='../pages/v_request_kantor.php';
+      </script>";
+  }
 }
 
 ?>

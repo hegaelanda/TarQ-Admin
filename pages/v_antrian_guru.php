@@ -153,7 +153,7 @@ include '../database/database_guru.php';
           </tr>
           <tr>
             <td align="center">
-              <img src="" alt="sertifikat">
+              <img src="" width="30%" height="30%" alt="sertifikat" id="serti">
             </td>
           </tr>
         </table>
@@ -260,26 +260,31 @@ include '../database/database_guru.php';
         document.getElementById('googlemaps').href = googlemapsURL;
 
         var storage = firebase.app().storage("gs://lkptarq93.appspot.com/");
-
         var storageRef = storage.ref();
-
-        var imagesRef = storageRef.child('Guru/IdentitasGuru');
-
         var fileName = uid;
 
+        var imagesRef = storageRef.child('Guru/IdentitasGuru');
         var penerimaRef = imagesRef.child(fileName);
-
         penerimaRef.getDownloadURL().then(function(url) {
           document.getElementById('picture').src = url;
-        }).catch(function(error) {
-                document.getElementById('picture').src = "https://image.flaticon.com/icons/svg/149/149071.svg";
-                
-              });
-              // return false;
-            }
-          });
+        })
+        .catch(function(error) {
+          document.getElementById('picture').src = "https://image.flaticon.com/icons/svg/149/149071.svg";
+        });
+
+        var sertiRef = storageRef.child('Guru/SIM');
+        var newsertiRef = sertiRef.child(fileName);
+        newsertiRef.getDownloadURL().then(function(url) {
+          document.getElementById('serti').src = url;
+          console.log(url)
+        })
+        .catch(function(error) {
+          document.getElementById('serti').src = "https://banner2.kisspng.com/20180412/etq/kisspng-question-mark-clip-art-question-mark-5acfe76ea62476.5893581115235746386805.jpg";
+          console.log(error);
+        });
+      }
+    });
     $("#accept").click(function() {
-      /*alert('masokk pa eko!1');*/
       $.ajax({
         url: "../func/f_accept_guru.php",
         method: "GET",
@@ -291,7 +296,6 @@ include '../database/database_guru.php';
       });
     });
     $("#decline").click(function() {
-      /*alert('masokk pa eko!1');*/
       $.ajax({
         url: "../func/f_decline_guru.php",
         method: "GET",
