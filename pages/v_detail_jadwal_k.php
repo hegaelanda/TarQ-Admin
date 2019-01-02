@@ -4,7 +4,7 @@ include 'header.php';
 include '../database/database.php';
 $kelas = $_GET['id'];
 
-$reference = $database->getReference('TARQ/KELAS/PRIVATE/'.$kelas);
+$reference = $database->getReference('TARQ/KELAS/KANTOR/'.$_SESSION['akses'].'/'.$kelas);
 $snapshot = $reference->getSnapshot();
 $value = $snapshot->getValue();
 
@@ -46,7 +46,7 @@ $value = $snapshot->getValue();
                         <tr>
                           <td><?php echo $no++; ?></td>
                           <td><?php date_default_timezone_set('Asia/Jakarta'); echo date('r', $arr[$i]); ?></td>
-                          <td><a class="btn btn-primary" href="v_detail_jadwal?id=<?php echo $kelas ?>+time=<?php echo $arr[$i] ?>"><i class="fa fa-arrow-right"></i></a></td>
+                          <td align="center"><a class="btn btn-primary" href="v_detail_absen_k.php?id=<?php echo $kelas ?>&time=<?php echo $arr[$i] ?>&guru=<?php echo $guru; ?>"><i class="fa fa-arrow-right"></i></a></td>
                         </tr>
                         <?php 
                       }

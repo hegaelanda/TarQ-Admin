@@ -125,7 +125,7 @@ include '../database/database_lembaga.php';
               <input type="file" id="fileInput" accept=".csv" name="csv">
               <br>
               <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
-              <br><br>
+              <br><br><br><br>
             </form>
           <!-- /.col-lg-12 -->
         </div>
@@ -155,12 +155,4 @@ include '../database/database_lembaga.php';
     }
 </script>
 
-<?php include 'footer.php';
-include '../js/home.js';
-if (!isset($_SESSION['id_admin'])) {
-  echo '<script type="text/javascript">';
-  echo 'alert("Session Expired, Please Re-Login");';
-  echo 'logout();';
-  echo '</script>';
-}
-?>
+<?php include 'footer.php';?>

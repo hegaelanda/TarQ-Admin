@@ -28,6 +28,7 @@ include '../database/database_guru.php';
                                         <th>No HP</th>
                                         <th>Created At</th>
                                         <th>Last Login At</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +58,11 @@ include '../database/database_guru.php';
                                                         echo "Belum Login";
                                                     }
                                                      ?>
+                                                </td>
+                                                <td align="center">
+                                                    <a href="v_edit_guru.php?id=<?php echo $key ?>" class="btn btn-primary">
+                                                        <i class="fa fa-arrow-right"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                     <?php 

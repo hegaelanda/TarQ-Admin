@@ -15,27 +15,25 @@ $firebase = (new Factory)
 
 $database = $firebase->getDatabase();
 
+$uid     = $_GET['id'];
+$reference = $database->getReference('TARQ/USER/GURU/'.$_SESSION['akses'].'/'.$uid);
+$snapshot = $reference->getSnapshot();
+$value = $snapshot->getValue();
+$lat = $value['latitude'];
+$long = $value['longitude'];
+$latitudeRumah = $value['latitudeRumah'];
+$longitudeRumah = $value['longitudeRumah'];
+$saldo = $value['saldo'];
+
+$auth = $firebase->getAuth();
+
 if (isset($_POST['email'])) {
-  
   $email   = $_POST['email'];
   $nama    = $_POST['nama'];
   $nohp    = $_POST['nohp'];
-  $lembaga = $_POST['lembaga'];
-  if ($lembaga == "other") {
-    $lembaga   = strtoupper($_POST['lembagabaru']);
-    $ambil     = $database->getReference('TARQ/Lembaga/lembaga');
-    $snap      = $ambil->getSnapshot();
-    $vlembaga  = $snap->getValue();
-
-    $ambilbaru   = 'TARQ/Lembaga';
-    $lembagapost = $database
-    ->getReference($ambilbaru)
-    ->set([
-        'lembaga'=>$vlembaga.','.$lembaga
-    ]);
-  }
+  $lembaga = $_GET['l'];
   $tanggallahir = $_POST['tanggallahir'];
-  $newDate = date("d-m-Y", strtotime($tanggallahir));
+  $newDate = date("d/m/Y", strtotime($tanggallahir));
   $alamat = $_POST['alamat'];
   if (isset($_POST['PraTahsin1'])) {
     $PraTahsin1 = "true";
@@ -83,20 +81,8 @@ if (isset($_POST['email'])) {
     $BahasaArab = "false";
   }
 if (isset($_SESSION['akses'])){
-    $userProperties = [
-        'email'         => $email,
-        'emailVerified' => true,
-        'password'      => '12341234',
-        'displayName'   => $nama,
-        'disabled'      => false
-    ];
-
-    $createdUser = $auth->createUser($userProperties);
-
-    $key = $auth->getUserByEmail($email);
 
     //set guru baru
-    $uid = $key->uid;
     $refrerence = "TARQ/USER/GURU/".$_SESSION['akses']."/".$uid;
     $newpost = $database
       ->getReference($refrerence)
@@ -116,22 +102,22 @@ if (isset($_SESSION['akses'])){
           'tahsin4'       =>$Tahsin4,
           'tahfizh'       =>$Tahfizh,
           'bahasaarab'    =>$BahasaArab,
-          'latitude'      =>'0',
-          'longitude'     =>'0',
-          'latitudeRumah' =>'0',
-          'longitudeRumah'=>'0',
-          'saldo'         =>0,
+          'latitude'      =>$lat,
+          'longitude'     =>$long,
+          'latitudeRumah' =>$latitudeRumah,
+          'longitudeRumah'=>$longitudeRumah,
+          'saldo'         =>$saldo,
           'level'         =>3,
           'verifikasi'    =>"true"
       ]);
 
     if ($newpost) {
       echo '<script type="text/javascript">';
-      echo "alert('User ID : $uid Email :$email Password : 12341234');";
+      echo "alert('User ID : $uid and Email :$email Updated!');";
       echo 'window.location.href = "../pages/v_guru.php";';
       echo '</script>';
     }else{
-      echo '<script type="text/javascript">alert("Data gagal ditambahkan");</script>';
+      echo '<script type="text/javascript">alert("Data gagal ditambahkan"); window.history.back() = "../pages/v_guru.php"</script>';
     }
   }else{
     echo '<script type="text/javascript">alert("Kesalahan, Coba Login Ulang");</script>';

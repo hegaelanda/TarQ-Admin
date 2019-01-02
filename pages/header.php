@@ -75,7 +75,7 @@
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li id="exadmin1" style="display: block;">
+                        <li id="exadmin1">
                             <a href="#"><i class="fa fa-calendar fa-fw"></i> Jadwal<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -85,14 +85,23 @@
                                     <a href="v_request_kantor.php"><i class="fa fa-caret-right fa-fw"></i>Request Kelas Kantor</a>
                                 </li>
                                 <li>
-                                    <a href="v_monitor_jadwal.php"><i class="fa fa-caret-right fa-fw"></i>Monitor Jadwal</a>
+                                    <a href="#"><i class="fa fa-caret-right fa-fw"></i> Monitor Jadwal <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="v_monitor_jadwal_p.php"><i class="fa fa-caret-right fa-fw"></i> Private</a>
+                                        </li>
+                                        <li>
+                                            <a href="v_monitor_jadwal_k.php"> <i class="fa fa-caret-right fa-fw"></i> Kantor</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
                             </ul>
                         </li>
-                        <li id="exadmin2" style="display: block;">
+                        <li id="exadmin2">
                             <a href="v_pembayaran.php"><i class="fa fa-get-pocket fa-fw"></i> Pembayaran</a>
                         </li>
-                        <li id="exadmin3" style="display: block;">
+                        <li id="exadmin3">
                             <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Guru<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -107,20 +116,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li id="exadmin4" style="display: block;">
+                        <li id="exadmin4">
                             <a href="v_jamaah.php"><i class="fa fa-users fa-fw"></i> Jamaah</a>
-                        </li>
-                        <li id="admin" style="display: none;">
-                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Admin<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="v_tambah_admin.php"><i class="fa fa-caret-right fa-fw"></i>Tambah Admin</a>
-                                </li>
-                                <li>
-                                    <a href="v_admin.php"><i class="fa fa-caret-right fa-fw"></i>List Admin</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>

@@ -74,6 +74,22 @@
 // error_reporting(0);
 include '../database/database.php';
 
+switch ($_SESSION['akses']) {
+  case 'BANDUNG':
+    $lat = '-6.894144';
+    $lng = '107.629769';
+    break;
+  
+  case 'PADANG':
+    $lat = '-0.239182';
+    $lng = '100.610456';
+    break;
+
+  default:
+    # code...
+    break;
+}
+
 //ambil guru
 $guru = $_POST['guru'];
 $refguru= $database->getReference('TARQ/USER/GURU/'.$_SESSION['akses'].'/'.$guru);
@@ -147,8 +163,8 @@ if (isset($_POST['tanggal1'])) {
         'idmurid'=>$newidmurid,
         'jadwalhari'=>"000,".$uploadjadwal."000,",
         'jmlpertemuan'=>$per,
-        'lokasilat'=>"-6.894144",
-        'lokasilang'=>"107.629769",
+        'lokasilat'=>$lat,
+        'lokasilang'=>$lng,
         'pelajaran'=>$pel
     ]);
 
@@ -161,9 +177,6 @@ if (isset($_POST['tanggal1'])) {
     ${"refmurid$m"} = $database->getReference('TARQ/USER/JAMAAH/'.$_SESSION['akses'].'/'.$murid[$m]);
     ${"snapmurid$m"} = ${"refmurid$m"}->getSnapshot();
     ${"valmurid$m"} = ${"snapmurid$m"}->getValue();
-
-    array_push($arrnamamurid, ${"valmurid$m"}['nama']);
-    array_push($arridmurid, ${"valmurid$m"}['id_user']);
 
     //hapus kelas sebelumnya
     for ($h=0; $h < count($keys); $h++) {
